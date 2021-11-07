@@ -19,7 +19,7 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import PropTypes from "prop-types";
 
-const rows = cardDetails.filter((card) => card.color === "Green");
+const rows = cardDetails;
 
 function renderMonster(row) {
   return (
