@@ -29,57 +29,59 @@ function renderMonster(row) {
             <TableCell />
             {row.stats.abilities &&
               row.stats.abilities.map((e, i) => (
-                <TableCell>Lvl {i + 1}</TableCell>
+                <TableCell key={i + 1}>Lvl {i + 1}</TableCell>
               ))}
           </TableRow>
         </TableHead>
         <TableBody>
-          <TableRow>
+          <TableRow key={row.id}>
             <TableCell>Abilities</TableCell>
             {row.stats.abilities.map((ability) => (
-              <TableCell>{ability}</TableCell>
+              <TableCell key={ability}>{ability}</TableCell>
             ))}
           </TableRow>
-          <TableRow>
+          <TableRow key={row.id}>
             <TableCell>Mana</TableCell>
             {row.stats.mana.map((mana) => (
-              <TableCell>{mana}</TableCell>
+              <TableCell key={mana}>{mana}</TableCell>
             ))}
           </TableRow>
           <TableRow>
             <TableCell>Attack</TableCell>
             {row.stats.attack.map((attack) => (
-              <TableCell>{attack}</TableCell>
+              <TableCell key={attack}>{attack}</TableCell>
             ))}
           </TableRow>
-          <TableRow>
+          <TableRow key={row.id}>
             <TableCell>Range</TableCell>
             {row.stats.ranged.map((ranged) => (
-              <TableCell>{ranged}</TableCell>
+              <TableCell key={ranged}>{ranged}</TableCell>
             ))}
           </TableRow>
-          <TableRow>
+          <TableRow key={row.id}>
             <TableCell>Magic</TableCell>
             {row.stats.magic.map((magic) => (
-              <TableCell>{magic}</TableCell>
+              <TableCell key={magic}>{magic}</TableCell>
             ))}
           </TableRow>
-          <TableRow>
+          <TableRow key={row.id}>
             <TableCell>Armor</TableCell>
             {row.stats.armor.map((armor) => (
-              <TableCell>{armor}</TableCell>
+              <TableCell key={armor}>{armor}</TableCell>
             ))}
           </TableRow>
           <TableRow>
             <TableCell>Health</TableCell>
             {row.stats.health.map((health) => (
-              <TableCell>{health}</TableCell>
+              <TableCell key={health}>{health}</TableCell>
             ))}
           </TableRow>
-          <TableRow>
+          <TableRow key={row.id}>
             <TableCell>Speed</TableCell>
             {row.stats.speed &&
-              row.stats.speed.map((speed) => <TableCell>{speed}</TableCell>)}
+              row.stats.speed.map((speed) => (
+                <TableCell key={speed}>{speed}</TableCell>
+              ))}
           </TableRow>
         </TableBody>
       </Table>
