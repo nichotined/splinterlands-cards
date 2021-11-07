@@ -1,6 +1,6 @@
 # splinterlands-cards
 Splinterlands list cards  
-https://splinterlands.com/
+Play the game - https://splinterlands.com/
 
 ## Packages
 - Next JS
