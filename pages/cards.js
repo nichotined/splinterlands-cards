@@ -1,5 +1,4 @@
 import * as React from "react";
-import {} from "@material-ui/core";
 import cardDetails from "../data/cardsDetails.json";
 import {
   Collapse,
