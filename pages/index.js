@@ -1,15 +1,8 @@
-import { Grid } from "@mui/material";
-import Header from "../src/headerComponent";
+import React from "react";
+import { Grid } from "semantic-ui-react";
 
 function HomePage() {
-  return (
-    <Header>
-      <Grid container spacing={2}>
-        <Grid item xs={12}></Grid>
-        <Grid item xs={12}></Grid>
-      </Grid>
-    </Header>
-  );
+  return "Hello";
 }
 
 export default HomePage;
