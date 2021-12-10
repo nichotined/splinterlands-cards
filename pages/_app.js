@@ -11,7 +11,7 @@ export default function MyApp({ Component, pageProps }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#3c1742" />
       </Head>
-      <Container textAlign="center">
+      <Container>
         <MenuComponent />
         <Component {...pageProps} />
       </Container>

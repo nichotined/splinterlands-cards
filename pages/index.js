@@ -1,8 +1,10 @@
 import React from "react";
-import { Grid } from "semantic-ui-react";
+import { Header } from "semantic-ui-react";
 
 function HomePage() {
-  return "Hello World";
+  return (
+    <Header as='h1'>Welcome</Header>
+  )
 }
 
 export default HomePage;

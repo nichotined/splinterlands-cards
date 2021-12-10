@@ -10,7 +10,7 @@
     "lint": "next lint"
   },
   "engines": {
-    "node": "14.17.6",
+    "node": "16.13.1",
     "npm": "8.1.0"
   },
   "keywords": [],
