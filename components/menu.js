@@ -12,6 +12,9 @@ export default class MenuComponent extends Component {
         <Link passHref={true} href="/history" color="inherit" underline="none">
           <Menu.Item name="history" />
         </Link>
+        <Link passHref={true} href="/search" color="inherit" underline="none">
+          <Menu.Item name="search" />
+        </Link>
       </Menu>
     );
   }

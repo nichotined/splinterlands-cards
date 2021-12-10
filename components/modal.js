@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, Modal, Table, TableBody, TableCell, TableHeader } from "semantic-ui-react";
 
 const join = (arr) => {
-  const n = String(arr).split(",")
+  const n = String(arr).split(",");
   n.forEach((item, index) => {
     if (item === "") {
       n[index] = "_";
@@ -12,7 +12,7 @@ const join = (arr) => {
 };
 
 const constructTable = (stats) => {
-  return <>
+  return (
     <Table celled fixed>
       <Table.Header>
         <Table.Row>
@@ -44,13 +44,11 @@ const constructTable = (stats) => {
         </Table.Row>
       </Table.Body>
     </Table>
-  </>
-}
+  );
+};
 
 const ModalComponent = ({ name, color, type, stats }) => {
   const [open, setOpen] = useState(false);
-
-  const mana = join(stats.mana)
 
   return (
     <Modal
