@@ -39,7 +39,7 @@ const HistoryPage = () => {
 
   return (
     <Container>
-      <Table celled fixed sortable>
+      <Table celled fixed sortable selectable>
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell

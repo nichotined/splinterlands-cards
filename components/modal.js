@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { Button, Modal, Table, TableBody, TableCell, TableHeader } from "semantic-ui-react";
+import {
+  Button,
+  Modal,
+  Table,
+  TableBody,
+  TableCell,
+  TableHeader,
+} from "semantic-ui-react";
 
 const join = (arr) => {
   const n = String(arr).split(",");
@@ -14,32 +21,25 @@ const join = (arr) => {
 const constructTable = (stats) => {
   return (
     <Table celled fixed>
-      <Table.Header>
-        <Table.Row>
-          <Table.HeaderCell>
-            Max. Level
-          </Table.HeaderCell>
-          <Table.HeaderCell>
-            Mana
-          </Table.HeaderCell>
-          <Table.HeaderCell>
-            Attack
-          </Table.HeaderCell>
-          <Table.HeaderCell>
-            Ranged
-          </Table.HeaderCell>
-          <Table.HeaderCell>
-            Magic
-          </Table.HeaderCell>
-        </Table.Row>
-      </Table.Header>
-
       <Table.Body>
         <Table.Row>
+          <Table.Cell>Max Level</Table.Cell>
           <Table.Cell>{stats.attack.length}</Table.Cell>
+        </Table.Row>
+        <Table.Row>
+          <Table.Cell>Attack</Table.Cell>
           <Table.Cell>{join(stats.attack)}</Table.Cell>
+        </Table.Row>
+        <Table.Row>
+          <Table.Cell>Mana</Table.Cell>
           <Table.Cell>{join(stats.mana)}</Table.Cell>
+        </Table.Row>
+        <Table.Row>
+          <Table.Cell>Ranged</Table.Cell>
           <Table.Cell>{join(stats.ranged)}</Table.Cell>
+        </Table.Row>
+        <Table.Row>
+          <Table.Cell>Magic</Table.Cell>
           <Table.Cell>{join(stats.magic)}</Table.Cell>
         </Table.Row>
       </Table.Body>
@@ -57,12 +57,11 @@ const ModalComponent = ({ name, color, type, stats }) => {
       open={open}
       trigger={<Button>Details</Button>}
     >
-      <Modal.Header>{name}</Modal.Header>
+      <Modal.Header>
+        [{type}] {name} - {color}
+      </Modal.Header>
       <Modal.Content>
-        <Modal.Description>
-          {type} - {color}
-          {constructTable(stats)}
-        </Modal.Description>
+        <Modal.Description>{constructTable(stats)}</Modal.Description>
       </Modal.Content>
       <Modal.Actions>
         <Button onClick={() => setOpen(false)}>Close</Button>
