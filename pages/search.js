@@ -65,15 +65,14 @@ const SearchPage = () => {
   }, []);
 
   const handleResultSelect = React.useCallback((e, data) => {
-    console.log(data.value);
-    const re = new RegExp(_.escapeRegExp(data.value), "i");
+    const re = new RegExp(_.escapeRegExp(data.result.name), "i");
     const isMatch = (r) => re.test(r.name);
 
-    console.log(_.filter(source, isMatch));
+    console.log();
 
     dispatch({
-      type: "UPDATE_SELECTION",
-      selection: data.result.name,
+      type: "FINISH_SEARCH",
+      results: _.filter(source, isMatch)
     });
   });
 
