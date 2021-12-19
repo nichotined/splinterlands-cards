@@ -1,5 +1,5 @@
 import "semantic-ui-css/semantic.min.css";
-import { Container } from "semantic-ui-react";
+import { Container, Divider } from "semantic-ui-react";
 import MenuComponent from "../components/menu";
 import Head from "next/head";
 import React from "react";

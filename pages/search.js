@@ -2,6 +2,7 @@ import React from "react";
 import { Grid, Header, Search, Segment, Table } from "semantic-ui-react";
 import _ from "lodash";
 import cardDetails from "../data/cardsDetails.json";
+import ModalComponent from "../components/modal";
 
 const source = cardDetails.map((card) => {
   return {
@@ -10,6 +11,7 @@ const source = cardDetails.map((card) => {
     name: card.name,
     color: card.color,
     type: card.type,
+    stats: card.stats,
   };
 });
 
@@ -61,18 +63,21 @@ const SearchPage = () => {
         type: "FINISH_SEARCH",
         results: _.filter(source, isMatch),
       });
-    }, 300);
+    }, 100);
   }, []);
 
   const handleResultSelect = React.useCallback((e, data) => {
     const re = new RegExp(_.escapeRegExp(data.result.name), "i");
     const isMatch = (r) => re.test(r.name);
 
-    console.log();
+    dispatch({
+      type: "UPDATE_SELECTION",
+      value: data.result.name,
+    });
 
     dispatch({
       type: "FINISH_SEARCH",
-      results: _.filter(source, isMatch)
+      results: _.filter(source, isMatch),
     });
   });
 
@@ -92,20 +97,9 @@ const SearchPage = () => {
           onSearchChange={handleSearch}
           results={results}
           value={value}
+          minCharacters={3}
         />
       </Grid.Column>
-      {/* <Grid.Column width={16}>
-        <Segment>
-          <Header>State</Header>
-          <pre style={{ overflowX: "auto" }}>
-            {JSON.stringify({ loading, results, value }, null, 2)}
-          </pre>
-          <Header>Options</Header>
-          <pre style={{ overflowX: "auto" }}>
-            {JSON.stringify(source, null, 2)}
-          </pre>
-        </Segment>
-      </Grid.Column> */}
       <Grid.Column width={16}>
         <Table celled fixed>
           <Table.Header>
@@ -113,6 +107,7 @@ const SearchPage = () => {
               <Table.HeaderCell>ID</Table.HeaderCell>
               <Table.HeaderCell>Name</Table.HeaderCell>
               <Table.HeaderCell>Type</Table.HeaderCell>
+              <Table.HeaderCell>Action</Table.HeaderCell>
             </Table.Row>
           </Table.Header>
           <Table.Body>
@@ -122,6 +117,14 @@ const SearchPage = () => {
                   <Table.Cell>{result.id}</Table.Cell>
                   <Table.Cell>{result.name}</Table.Cell>
                   <Table.Cell>{result.type}</Table.Cell>
+                  <Table.Cell textAlign="center">
+                    <ModalComponent
+                      name={result.name}
+                      type={result.type}
+                      color={result.color}
+                      stats={result.stats}
+                    />
+                  </Table.Cell>
                 </Table.Row>
               ))}
           </Table.Body>

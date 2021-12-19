@@ -1,12 +1,5 @@
 import React, { useState } from "react";
-import {
-  Button,
-  Modal,
-  Table,
-  TableBody,
-  TableCell,
-  TableHeader,
-} from "semantic-ui-react";
+import { Button, Modal, Table } from "semantic-ui-react";
 
 const join = (arr) => {
   const n = String(arr).split(",");
@@ -15,32 +8,64 @@ const join = (arr) => {
       n[index] = "_";
     }
   });
-  return n.join(", ");
+  return n;
 };
 
 const constructTable = (stats) => {
   return (
-    <Table celled fixed>
+    <Table celled fixed selectable>
       <Table.Body>
         <Table.Row>
-          <Table.Cell>Max Level</Table.Cell>
-          <Table.Cell>{stats.attack.length}</Table.Cell>
+          <Table.Cell textAlign="right">Level</Table.Cell>
+          {join(stats.mana).map((item, index) => (
+            <Table.Cell key={index}>{index + 1}</Table.Cell>
+          ))}
         </Table.Row>
         <Table.Row>
-          <Table.Cell>Attack</Table.Cell>
-          <Table.Cell>{join(stats.attack)}</Table.Cell>
+          <Table.Cell textAlign="right">Abilities</Table.Cell>
+          {stats.abilities ? (
+            join(stats.abilities).map((item, index) => (
+              <Table.Cell key={index}>{item}</Table.Cell>
+            ))
+          ) : (
+            <Table.Cell key={"none"}>_</Table.Cell>
+          )}
         </Table.Row>
         <Table.Row>
-          <Table.Cell>Mana</Table.Cell>
-          <Table.Cell>{join(stats.mana)}</Table.Cell>
+          <Table.Cell textAlign="right">Mana</Table.Cell>
+          {join(stats.mana).map((item, index) => (
+            <Table.Cell key={index}>{item}</Table.Cell>
+          ))}
         </Table.Row>
         <Table.Row>
-          <Table.Cell>Ranged</Table.Cell>
-          <Table.Cell>{join(stats.ranged)}</Table.Cell>
+          <Table.Cell textAlign="right">Health</Table.Cell>
+          {join(stats.health).map((item, index) => (
+            <Table.Cell key={index}>{item}</Table.Cell>
+          ))}
         </Table.Row>
         <Table.Row>
-          <Table.Cell>Magic</Table.Cell>
-          <Table.Cell>{join(stats.magic)}</Table.Cell>
+          <Table.Cell textAlign="right">Attack</Table.Cell>
+          {join(stats.attack).map((item, index) => (
+            <Table.Cell key={index}>{item}</Table.Cell>
+          ))}
+        </Table.Row>
+        <Table.Row>
+          <Table.Cell textAlign="right">Armor</Table.Cell>
+          {join(stats.armor).map((item, index) => (
+            <Table.Cell key={index}>{item}</Table.Cell>
+          ))}
+        </Table.Row>
+        <Table.Row>
+          <Table.Cell textAlign="right">Ranged</Table.Cell>
+          {join(stats.ranged).map((item, index) => (
+            <Table.Cell key={index}>{item}</Table.Cell>
+          ))}
+        </Table.Row>
+        <Table.Row>
+          <Table.Cell textAlign="right">Magic</Table.Cell>
+          {join(stats.magic).map((item, index) => (
+            <Table.Cell key={index}>{item}</Table.Cell>
+          ))}
         </Table.Row>
       </Table.Body>
     </Table>
@@ -55,7 +80,7 @@ const ModalComponent = ({ name, color, type, stats }) => {
       onClose={() => setOpen(false)}
       onOpen={() => setOpen(true)}
       open={open}
-      trigger={<Button>Details</Button>}
+      trigger={<Button primary>Details</Button>}
     >
       <Modal.Header>
         [{type}] {name} - {color}
@@ -64,7 +89,7 @@ const ModalComponent = ({ name, color, type, stats }) => {
         <Modal.Description>{constructTable(stats)}</Modal.Description>
       </Modal.Content>
       <Modal.Actions>
-        <Button onClick={() => setOpen(false)}>Close</Button>
+        <Button secondary onClick={() => setOpen(false)}>Close</Button>
       </Modal.Actions>
     </Modal>
   );

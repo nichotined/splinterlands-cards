@@ -3,6 +3,7 @@ import { Container, Icon, Table } from "semantic-ui-react";
 import cardDetails from "../data/cardsDetails.json";
 import _ from "lodash";
 import ModalComponent from "../components/modal";
+import DistributionModal from "../components/distributionModal";
 
 const rows = cardDetails;
 
@@ -38,51 +39,60 @@ const HistoryPage = () => {
   const { column, data, direction } = state;
 
   return (
-    <Container>
-      <Table celled fixed sortable selectable>
-        <Table.Header>
-          <Table.Row>
-            <Table.HeaderCell
-              sorted={column === "id" ? direction : null}
-              onClick={() => dispatch({ type: "CHANGE_SORT", column: "id" })}
-            >
-              ID
-            </Table.HeaderCell>
-            <Table.HeaderCell
-              sorted={column === "name" ? direction : null}
-              onClick={() => dispatch({ type: "CHANGE_SORT", column: "name" })}
-            >
-              Name
-            </Table.HeaderCell>
-            <Table.HeaderCell
-              sorted={column === "color" ? direction : null}
-              onClick={() => dispatch({ type: "CHANGE_SORT", column: "color" })}
-            >
-              Color
-            </Table.HeaderCell>
-            <Table.HeaderCell
-              sorted={column === "type" ? direction : null}
-              onClick={() => dispatch({ type: "CHANGE_SORT", column: "type" })}
-            >Type</Table.HeaderCell>
-            <Table.HeaderCell>Action</Table.HeaderCell>
-          </Table.Row>
-        </Table.Header>
+    <Table celled fixed sortable selectable>
+      <Table.Header>
+        <Table.Row>
+          <Table.HeaderCell
+            sorted={column === "id" ? direction : null}
+            onClick={() => dispatch({ type: "CHANGE_SORT", column: "id" })}
+          >
+            ID
+          </Table.HeaderCell>
+          <Table.HeaderCell
+            sorted={column === "name" ? direction : null}
+            onClick={() => dispatch({ type: "CHANGE_SORT", column: "name" })}
+          >
+            Name
+          </Table.HeaderCell>
+          <Table.HeaderCell
+            sorted={column === "color" ? direction : null}
+            onClick={() => dispatch({ type: "CHANGE_SORT", column: "color" })}
+          >
+            Color
+          </Table.HeaderCell>
+          <Table.HeaderCell
+            sorted={column === "type" ? direction : null}
+            onClick={() => dispatch({ type: "CHANGE_SORT", column: "type" })}
+          >
+            Type
+          </Table.HeaderCell>
+          <Table.HeaderCell>Distribution</Table.HeaderCell>
+          <Table.HeaderCell>Card Details</Table.HeaderCell>
+        </Table.Row>
+      </Table.Header>
 
-        <Table.Body>
-          {data.map(({ id, name, color, type, stats }) => (
-            <Table.Row key={name}>
-              <Table.Cell>{id}</Table.Cell>
-              <Table.Cell>{name}</Table.Cell>
-              <Table.Cell>{color}</Table.Cell>
-              <Table.Cell>{type}</Table.Cell>
-              <Table.Cell textAlign="center">
-                <ModalComponent name={name} type={type} color={color} stats={stats} />
-              </Table.Cell>
-            </Table.Row>
-          ))}
-        </Table.Body>
-      </Table>
-    </Container>
+      <Table.Body>
+        {data.map(({ id, name, color, type, stats, distribution }) => (
+          <Table.Row key={name}>
+            <Table.Cell>{id}</Table.Cell>
+            <Table.Cell>{name}</Table.Cell>
+            <Table.Cell>{color}</Table.Cell>
+            <Table.Cell>{type}</Table.Cell>
+            <Table.Cell textAlign="center">
+              <DistributionModal distribution={distribution} name={name} />
+            </Table.Cell>
+            <Table.Cell textAlign="center">
+              <ModalComponent
+                name={name}
+                type={type}
+                color={color}
+                stats={stats}
+              />
+            </Table.Cell>
+          </Table.Row>
+        ))}
+      </Table.Body>
+    </Table>
   );
 };
 
